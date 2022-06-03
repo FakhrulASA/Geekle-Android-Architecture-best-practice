@@ -1,4 +1,4 @@
-package com.humanverse.driso_imagegallery.data.model
+package com.humanverse.driso_imagegallery.data.image
 
 data class ProfileImage(
     val large: String,

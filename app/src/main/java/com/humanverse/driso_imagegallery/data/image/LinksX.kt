@@ -1,6 +1,6 @@
-package com.humanverse.driso_imagegallery.data.model
+package com.humanverse.driso_imagegallery.data.image
 
-data class LinksXX(
+data class LinksX(
     val followers: String,
     val following: String,
     val html: String,
