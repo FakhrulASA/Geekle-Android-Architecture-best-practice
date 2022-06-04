@@ -4,6 +4,7 @@ import com.humanverse.driso_imagegallery.data.image.ImageModel
 import com.humanverse.driso_imagegallery.data.image.ImageModelItem
 import com.humanverse.driso_imagegallery.remote.endpoint.GalleryAPI
 import com.humanverse.driso_imagegallery.util.getFailure
+import com.humanverse.driso_imagegallery.util.isNetworkAvailable
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

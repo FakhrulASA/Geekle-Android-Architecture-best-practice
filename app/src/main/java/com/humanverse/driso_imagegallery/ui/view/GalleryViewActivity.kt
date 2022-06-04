@@ -18,7 +18,7 @@ class GalleryViewActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gallery)
-        vm.getGalleryItem({
+        vm.getGalleryItem(this, {
             Log.d("MESSAGEFROMREP", it[0].urls.full)
         }, {
             Log.d("MESSAGEFROMREP", it)
