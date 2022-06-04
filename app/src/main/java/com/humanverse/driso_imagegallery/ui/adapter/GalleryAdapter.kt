@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.humanverse.driso_imagegallery.data.image.ImageModelItem
 import com.humanverse.driso_imagegallery.databinding.ItemGalleryBinding
-import com.humanverse.driso_imagegallery.ui.view.PhotoViewActivity
+import com.humanverse.driso_imagegallery.ui.view.photoview.PhotoViewActivity
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
