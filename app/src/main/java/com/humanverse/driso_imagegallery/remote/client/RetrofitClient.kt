@@ -1,40 +1,56 @@
 package com.humanverse.driso_imagegallery.remote.client
 
-import android.content.Context
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.humanverse.driso_imagegallery.util.BaseUrl.getBaseUrl
 import okhttp3.Cache
-import okhttp3.CacheControl
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
 import java.util.concurrent.TimeUnit
-import javax.inject.Inject
 
-class RetrofitClient @Inject constructor(context: Context) {
-    private val cacheSize = 10 * 1024 * 1024 // 10 MB
-    private val httpCacheDirectory = File(context.cacheDir, "http-cache")
-    private val cache = Cache(httpCacheDirectory, cacheSize.toLong())
-    private val loggingInterceptor: HttpLoggingInterceptor = HttpLoggingInterceptor()
+object RetrofitClient {
 
-    val httpClient by lazy {
-        OkHttpClient.Builder()
-            .cache(cache)
-            .addNetworkInterceptor(networkCacheInterceptor)
-            .addInterceptor(loggingInterceptor)
+//    private val cacheSize = 10 * 1024 * 1024 // 10 MB
+//    private val httpCacheDirectory = File(context.cacheDir, "http-cache")
+//    private val cache = Cache(httpCacheDirectory, cacheSize.toLong())
+
+    private val loggingInterceptor: HttpLoggingInterceptor by lazy {
+        HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+    }
+
+    private val myHttpClient: OkHttpClient =
+        OkHttpClient()
+            .newBuilder()
+            .connectTimeout(1, TimeUnit.MINUTES)
+            .readTimeout(1, TimeUnit.MINUTES)
+            .writeTimeout(1, TimeUnit.MINUTES)
+            .retryOnConnectionFailure(true).addInterceptor(loggingInterceptor).build()
+
+
+    private val gson: Gson by lazy {
+        GsonBuilder()
+            .setLenient()
+            .serializeNulls()
+            .create()
+    }
+
+
+    private var retrofit: Retrofit = getNewInstance(getBaseUrl())
+
+    private fun getNewInstance(url: String): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(url)
+            .client(myHttpClient)
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
     }
 
-    private val networkCacheInterceptor = Interceptor { chain ->
-        val response = chain.proceed(chain.request())
 
-        val cacheControl = CacheControl.Builder()
-            .maxAge(1, TimeUnit.MINUTES)
-            .build()
-
-        response.newBuilder()
-            .header("Cache-Control", cacheControl.toString())
-            .build()
-    }
+    val getRetrofitInstance: Retrofit
+        get() = retrofit
 
 
 }

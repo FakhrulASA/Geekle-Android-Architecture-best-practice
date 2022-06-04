@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "47345795083",
+    "project_id": "driso-c6afd",
+    "storage_bucket": "driso-c6afd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:47345795083:android:e0a58f63160e6ecae9070e",
+        "android_client_info": {
+          "package_name": "com.humanverse.driso_imagegallery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "47345795083-vd3b6vjp08rjhr9f180nfop5isc2i3c4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMtmBf5TtCKiDoVkdxxiSjJ5XDpLHVUGI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "47345795083-vd3b6vjp08rjhr9f180nfop5isc2i3c4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
