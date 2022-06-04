@@ -11,9 +11,9 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class RetrofitClient @Inject constructor(context: Context) {
-    val cacheSize = 10 * 1024 * 1024 // 10 MB
-    val httpCacheDirectory = File(context.cacheDir, "http-cache")
-    val cache = Cache(httpCacheDirectory, cacheSize.toLong())
+    private val cacheSize = 10 * 1024 * 1024 // 10 MB
+    private val httpCacheDirectory = File(context.cacheDir, "http-cache")
+    private val cache = Cache(httpCacheDirectory, cacheSize.toLong())
     private val loggingInterceptor: HttpLoggingInterceptor = HttpLoggingInterceptor()
 
     val httpClient by lazy {

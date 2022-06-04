@@ -21,14 +21,14 @@ class GalleryViewModel @Inject constructor(
     @RequiresApi(Build.VERSION_CODES.M)
     fun getGalleryItem(
         context: Context,
-        succss: (MutableList<ImageModelItem>) -> Unit,
+        success: (MutableList<ImageModelItem>) -> Unit,
         failure: (String) -> Unit
     ) {
         isLoading.value = true
         if (isNetworkAvailable(context)) {
             getGalleryDataFromServerUseCase.fetchGalleryData(
                 {
-                    succss(it)
+                    success(it)
                     isLoading.value = false
                 }, {
                     failure(it)

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.humanverse.driso_imagegallery.data.image.ImageModelItem
 import com.humanverse.driso_imagegallery.databinding.ItemGalleryBinding
 import com.humanverse.driso_imagegallery.ui.view.PhotoViewActivity
@@ -20,10 +21,15 @@ class GalleryAdapter @Inject constructor(
     class GalleryViewHolder(private val binding: ItemGalleryBinding, private val context: Context) :
         RecyclerView.ViewHolder(binding.root) {
         fun bindView(list: List<ImageModelItem>, position: Int) {
+
+            /**
+             * Image caching is done with diskcache strategy
+             */
             Glide
                 .with(context)
                 .load(list[position].urls.small)
                 .centerCrop()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(binding.imageView)
 
             binding.imageView.setOnClickListener {
@@ -36,11 +42,11 @@ class GalleryAdapter @Inject constructor(
 
     }
 
-    private var weatherList: List<ImageModelItem> = mutableListOf()
-    override fun getItemCount(): Int = weatherList.size
+    private var galleryItemList: List<ImageModelItem> = mutableListOf()
+    override fun getItemCount(): Int = galleryItemList.size
 
     override fun onBindViewHolder(holder: GalleryViewHolder, position: Int) {
-        holder.bindView(weatherList, position)
+        holder.bindView(galleryItemList, position)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GalleryViewHolder =
@@ -53,9 +59,8 @@ class GalleryAdapter @Inject constructor(
             context
         )
 
-    fun setData(weatherList: List<ImageModelItem>) {
-        this.weatherList = weatherList
-        notifyDataSetChanged()
+    fun setData(galleryItemList: List<ImageModelItem>) {
+        this.galleryItemList = galleryItemList
     }
 
 }

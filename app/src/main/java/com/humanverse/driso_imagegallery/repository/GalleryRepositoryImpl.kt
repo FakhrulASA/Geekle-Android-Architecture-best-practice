@@ -17,7 +17,7 @@ class GalleryRepositoryImpl @Inject constructor(private val galleryAPI: GalleryA
         onFailed: (String) -> Unit
     ) {
         val galleryCall =
-            galleryAPI.fetchImageFromServer("wAkR5LSZf7uv7Fej1jLb2PLkyKBb9UzycDqZGTAK4SU", null)
+            galleryAPI.fetchImageFromServer("wAkR5LSZf7uv7Fej1jLb2PLkyKBb9UzycDqZGTAK4SU", 3)
         galleryCall.enqueue(object : Callback<ImageModel> {
             override fun onResponse(call: Call<ImageModel>, response: Response<ImageModel>) {
                 if (response.isSuccessful) {
