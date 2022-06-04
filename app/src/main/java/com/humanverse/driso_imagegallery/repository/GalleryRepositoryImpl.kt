@@ -13,11 +13,12 @@ import javax.inject.Inject
 class GalleryRepositoryImpl @Inject constructor(private val galleryAPI: GalleryAPI) :
     GalleryRepository {
     override fun fetchGalleryDataFromServer(
+        page:Int,
         onSuccess: (MutableList<ImageModelItem>) -> Unit,
         onFailed: (String) -> Unit
     ) {
         val galleryCall =
-            galleryAPI.fetchImageFromServer("wAkR5LSZf7uv7Fej1jLb2PLkyKBb9UzycDqZGTAK4SU", 3)
+            galleryAPI.fetchImageFromServer("wAkR5LSZf7uv7Fej1jLb2PLkyKBb9UzycDqZGTAK4SU", page)
         galleryCall.enqueue(object : Callback<ImageModel> {
             override fun onResponse(call: Call<ImageModel>, response: Response<ImageModel>) {
                 if (response.isSuccessful) {
