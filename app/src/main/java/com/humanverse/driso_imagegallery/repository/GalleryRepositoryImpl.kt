@@ -3,6 +3,7 @@ package com.humanverse.driso_imagegallery.repository
 import com.humanverse.driso_imagegallery.data.image.ImageModel
 import com.humanverse.driso_imagegallery.data.image.ImageModelItem
 import com.humanverse.driso_imagegallery.remote.endpoint.GalleryAPI
+import com.humanverse.driso_imagegallery.util.AppConstants.getClientKey
 import com.humanverse.driso_imagegallery.util.getFailure
 import com.humanverse.driso_imagegallery.util.isNetworkAvailable
 import retrofit2.Call
@@ -18,7 +19,7 @@ class GalleryRepositoryImpl @Inject constructor(private val galleryAPI: GalleryA
         onFailed: (String) -> Unit
     ) {
         val galleryCall =
-            galleryAPI.fetchImageFromServer("wAkR5LSZf7uv7Fej1jLb2PLkyKBb9UzycDqZGTAK4SU", page)
+            galleryAPI.fetchImageFromServer(getClientKey(), page)
         galleryCall.enqueue(object : Callback<ImageModel> {
             override fun onResponse(call: Call<ImageModel>, response: Response<ImageModel>) {
                 if (response.isSuccessful) {

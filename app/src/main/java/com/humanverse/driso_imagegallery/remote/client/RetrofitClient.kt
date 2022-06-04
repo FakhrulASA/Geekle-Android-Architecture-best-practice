@@ -2,13 +2,11 @@ package com.humanverse.driso_imagegallery.remote.client
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.humanverse.driso_imagegallery.util.BaseUrl.getBaseUrl
-import okhttp3.Cache
+import com.humanverse.driso_imagegallery.util.AppConstants.getBaseUrl
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.io.File
 import java.util.concurrent.TimeUnit
 
 object RetrofitClient {
@@ -48,9 +46,6 @@ object RetrofitClient {
             .build()
     }
 
-
     val getRetrofitInstance: Retrofit
         get() = retrofit
-
-
 }
