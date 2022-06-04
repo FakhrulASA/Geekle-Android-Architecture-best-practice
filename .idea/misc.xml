@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/CHOTU/AndroidStudioProjects/DrisoImagegallery/app/src/main/res/layout/activity_gallery.xml" value="0.16578947368421051" />
         <entry key="..\:/Users/CHOTU/AndroidStudioProjects/DrisoImagegallery/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/CHOTU/AndroidStudioProjects/DrisoImagegallery/app/src/main/res/layout/item_gallery.xml" value="0.25" />
+        <entry key="..\:/Users/CHOTU/AndroidStudioProjects/DrisoImagegallery/app/src/main/res/layout/activity_photo_view.xml" value="0.178125" />
+        <entry key="..\:/Users/CHOTU/AndroidStudioProjects/DrisoImagegallery/app/src/main/res/layout/item_gallery.xml" value="0.16" />
       </map>
     </option>
   </component>
