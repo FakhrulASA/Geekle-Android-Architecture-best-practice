@@ -5,7 +5,11 @@ import com.humanverse.driso_imagegallery.repository.GalleryRepositoryImpl
 import javax.inject.Inject
 
 class GetGalleryDataFromServerUseCase @Inject constructor(private val galleryRepositoryImpl: GalleryRepositoryImpl) {
-//    fun fetchGalleryData(): List<ImageModelItem> {
-////        return galleryRepositoryImpl.fetchGalleryDataFromServer()
-//    }
+    fun fetchGalleryData(succss: (MutableList<ImageModelItem>) -> Unit, failure: (String) -> Unit) {
+        galleryRepositoryImpl.fetchGalleryDataFromServer({
+            succss.invoke(it)
+        }, {
+            failure.invoke(it)
+        })
+    }
 }
