@@ -1,4 +1,4 @@
-package com.humanverse.driso_imagegallery.ui.view
+package com.humanverse.driso_imagegallery.ui.view.photoview
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory

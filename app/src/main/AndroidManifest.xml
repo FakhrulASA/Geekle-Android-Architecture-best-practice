@@ -18,10 +18,10 @@
         android:theme="@style/Theme.DrisoImageGallery"
         tools:targetApi="31">
         <activity
-            android:name=".ui.view.PhotoViewActivity"
+            android:name=".ui.view.photoview.PhotoViewActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.view.GalleryViewActivity"
+            android:name=".ui.view.gallery.GalleryViewActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

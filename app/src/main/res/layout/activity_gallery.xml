@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.view.GalleryViewActivity">
+    tools:context=".ui.view.gallery.GalleryViewActivity">
 
 
     <androidx.recyclerview.widget.RecyclerView

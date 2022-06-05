@@ -1,4 +1,4 @@
-package com.humanverse.driso_imagegallery.ui.viewmodel
+package com.humanverse.driso_imagegallery.ui.view.gallery
 
 import android.content.Context
 import android.os.Build

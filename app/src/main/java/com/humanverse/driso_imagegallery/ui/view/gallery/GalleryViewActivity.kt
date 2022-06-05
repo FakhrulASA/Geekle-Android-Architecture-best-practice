@@ -1,9 +1,8 @@
-package com.humanverse.driso_imagegallery.ui.view
+package com.humanverse.driso_imagegallery.ui.view.gallery
 
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
@@ -12,12 +11,16 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.remoteconfig.ktx.get
 import com.google.firebase.remoteconfig.ktx.remoteConfig
 import com.humanverse.driso_imagegallery.base.BaseActivity
+import com.humanverse.driso_imagegallery.database.DataStorePreference.getCurrentAppFlavor
+import com.humanverse.driso_imagegallery.database.DataStorePreference.setCurrentAppFlavor
 import com.humanverse.driso_imagegallery.databinding.ActivityGalleryBinding
 import com.humanverse.driso_imagegallery.interactor.GetGalleryDataFromServerUseCase
 import com.humanverse.driso_imagegallery.ui.adapter.GalleryAdapter
-import com.humanverse.driso_imagegallery.ui.viewmodel.GalleryViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 
@@ -27,6 +30,10 @@ class GalleryViewActivity : BaseActivity() {
     lateinit var galleryRepositoryImpl: GetGalleryDataFromServerUseCase
 
     private var page = 1
+    private val remoteConfig = Firebase.remoteConfig
+    private val appflavor = remoteConfig["APP_FLAVOR_TYPE"].asString()
+    val appFlavorId: Int
+        get() = if (appflavor.isBlank()) 1 else appflavor.toInt()
 
     @Inject
     lateinit var adapterGallery: GalleryAdapter
@@ -40,7 +47,7 @@ class GalleryViewActivity : BaseActivity() {
         showLoader()
         initGalleryRecyclerView()
         loadGallery()
-
+        initAppFlavor()
         /**
          * This will be called when reach the end of recyclerview and then
          * the page value will be increased and for new data will be requested
@@ -58,6 +65,23 @@ class GalleryViewActivity : BaseActivity() {
         })
     }
 
+
+    private fun initAppFlavor() {
+        CoroutineScope(Dispatchers.IO).launch {
+            getCurrentAppFlavor(this@GalleryViewActivity).collect {
+                if (it != appFlavorId) {
+                    withContext(Dispatchers.Main) {
+                        updateAppFlavor()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun updateAppFlavor() {
+        setCurrentAppFlavor(this, appFlavorId)
+    }
+
     private fun initGalleryRecyclerView() {
         val gridLayoutManager = GridLayoutManager(this, 2)
         binding.rvGalleryImage.apply {
@@ -66,13 +90,6 @@ class GalleryViewActivity : BaseActivity() {
         }
     }
 
-    private fun updateAppFlavor() {
-        val remoteConfig = Firebase.remoteConfig
-
-        // [START get_config_values]
-        val welcomeMessage = remoteConfig["APP_FLAVOR_TYPE"].asString()
-        Toast.makeText(this, welcomeMessage, Toast.LENGTH_LONG).show()
-    }
 
     private fun showLoader() {
         lifecycleScope.launch {
