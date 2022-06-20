@@ -12,6 +12,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
+/**
+ * DataStore as our local caching for storing the current application flavor
+ */
 object DataStorePreference {
     val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "current_app_flavor")
     val APP_FLAVOR = intPreferencesKey("app_flavor")

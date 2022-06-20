@@ -1,10 +1,10 @@
-package com.humanverse.driso_imagegallery
+package com.humanverse.driso_imagegallery.repository
 
 import com.humanverse.driso_imagegallery.data.image.ImageModel
 import org.junit.Test
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.verify
-import retrofit2.Call
+import retrofit2.Callz
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
@@ -32,25 +32,27 @@ class PlacesService constructor(private val retrofit: Retrofit) :
 
 }
 
-interface TestCallback{
-    fun doTest(msg : String): String
+interface TestCallback {
+    fun doTest(msg: String): String
 }
 
 class GalleryAPITest {
 
     @Test
-    fun testCallbackWithMock(){
-        val callback : TestCallback = mock(TestCallback::class.java)
+    fun testCallbackWithMock() {
+        val callback: TestCallback = mock(TestCallback::class.java)
         verify(callback).doTest("Hello")
     }
 
     @Test
-    fun testGalleryAPI(){
+    fun testGalleryAPI() {
         //Get an instance of PlacesService by proiving the Retrofit instance
         val service = PlacesService(RetrofitClient().retrofit)
         //Create a new request for our API calling
         //Execute the API call
-        val response = service.getGalleryItem("https://api.unsplash.com/page=1?client-id=wAkR5LSZf7uv7Fej1jLb2PLkyKBb9UzycDqZGTAK4SU").execute()
+        val response =
+            service.getGalleryItem("https://api.unsplash.com/page=1?client-id=wAkR5LSZf7uv7Fej1jLb2PLkyKBb9UzycDqZGTAK4SU")
+                .execute()
         //Check for error body
         val errorBody = response.errorBody()
         assert(errorBody == null)

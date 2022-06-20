@@ -23,6 +23,4 @@ class MyApp : Application() {
     }
 
 
-
-
 }

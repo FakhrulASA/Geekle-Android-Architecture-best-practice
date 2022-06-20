@@ -49,6 +49,10 @@ class GalleryAdapter @Inject constructor(
 
     }
 
+    /**
+     * For comparing item, so that any similar item will not be
+     * doubled in the recyclerview
+     */
     private val diffUtilsCallBack =
         object : DiffUtil.ItemCallback<ImageModelItem>() {
             override fun areItemsTheSame(

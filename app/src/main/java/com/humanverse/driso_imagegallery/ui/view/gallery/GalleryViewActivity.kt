@@ -16,6 +16,7 @@ import com.humanverse.driso_imagegallery.database.DataStorePreference.setCurrent
 import com.humanverse.driso_imagegallery.databinding.ActivityGalleryBinding
 import com.humanverse.driso_imagegallery.interactor.GetGalleryDataFromServerUseCase
 import com.humanverse.driso_imagegallery.ui.adapter.GalleryAdapter
+import com.humanverse.driso_imagegallery.util.AppConstants
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -40,14 +41,14 @@ class GalleryViewActivity : BaseActivity() {
     private lateinit var binding: ActivityGalleryBinding
     private val vm: GalleryViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
+        initAppFlavor()
         super.onCreate(savedInstanceState)
         binding = ActivityGalleryBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         showLoader()
         initGalleryRecyclerView()
         loadGallery()
-        initAppFlavor()
+
         /**
          * This will be called when reach the end of recyclerview and then
          * the page value will be increased and for new data will be requested
@@ -65,6 +66,10 @@ class GalleryViewActivity : BaseActivity() {
         })
     }
 
+    /**
+     * here will be check for app flavor. If it doesn't match the current app
+     * flavor we will update it to the asking application flavor
+     */
 
     private fun initAppFlavor() {
         CoroutineScope(Dispatchers.IO).launch {
@@ -78,8 +83,17 @@ class GalleryViewActivity : BaseActivity() {
         }
     }
 
+    /**
+     * Here will be app flavor changed upon the firebase remote config
+     */
+
     private fun updateAppFlavor() {
         setCurrentAppFlavor(this, appFlavorId)
+        if(appFlavorId == AppConstants.PICASSO_API){
+            // do change API to picasso api
+        }else{
+            // do change API to unsplash api
+        }
     }
 
     private fun initGalleryRecyclerView() {
@@ -98,7 +112,6 @@ class GalleryViewActivity : BaseActivity() {
                     binding.progressBar.visibility = View.VISIBLE
                 } else {
                     binding.progressBar.visibility = View.INVISIBLE
-
                 }
             }
         }
@@ -107,6 +120,7 @@ class GalleryViewActivity : BaseActivity() {
     /**
      * Submitting request for initial data and next page data as long as user keep scrolling
      */
+
     private fun loadGallery() {
         vm.getGalleryItem(page, this, {
             adapterGallery.addDataSet(it)

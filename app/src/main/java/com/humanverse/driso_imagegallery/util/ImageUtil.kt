@@ -44,6 +44,9 @@ class ImageUtil {
         }
     }
 
+    /**
+     * This function will be using for sharing the bitmap through option chooser
+     */
     fun shareImage(context: Context, bitmap: Bitmap) {
         val share = Intent(Intent.ACTION_SEND)
         share.type = "image/jpeg"
