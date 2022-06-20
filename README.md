@@ -1,8 +1,3 @@
- ### [Watch demo application video](https://drive.google.com/file/d/1ABjD8fHhr_lZOruGlShhdR9mLvVr9ejS/view?usp=sharing)
-## Screenshots
-Gallery             |  Image View|Zoom in / Out            |  Share Image
-:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
-![](https://github.com/FakhrulASA/driso/blob/master/01.jpg)  |  ![](https://github.com/FakhrulASA/driso/blob/master/02.jpg)| ![](https://github.com/FakhrulASA/driso/blob/master/03.jpg)  |  ![](https://github.com/FakhrulASA/driso/blob/master/04.jpg)
 ## Feature's implemented :
 ### 1. Gallery View 
 Gallery view implemented using simple recyclerview and gridview
