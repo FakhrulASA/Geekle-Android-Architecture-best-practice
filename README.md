@@ -1,5 +1,4 @@
-# Driso - Image gallery
-### [Watch demo application video](https://drive.google.com/file/d/1ABjD8fHhr_lZOruGlShhdR9mLvVr9ejS/view?usp=sharing)
+ ### [Watch demo application video](https://drive.google.com/file/d/1ABjD8fHhr_lZOruGlShhdR9mLvVr9ejS/view?usp=sharing)
 ## Screenshots
 Gallery             |  Image View|Zoom in / Out            |  Share Image
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
@@ -21,8 +20,7 @@ Caching image done simply by Glide DiskCacheStrategy
 Unit test implemented for the Gallery API Response checking, is it normally returning body and not returning error.
 ### 8. App Flavor/Remotely API change
 App Flavor/Api scheme changes done with Firebase RemoteConfig where we put a value which can be changed to change application base url. Then the current value is stored in DataStore preference(Local cache)
-### 9. API response caching (Not Implemented)
-API response caching can be completed using cacheDir() and HttpClient interceptor cache(). But Due to randmized behavior of the api(Randomly changes value on same page on load) I didnt not implemented. 
+
 ## Reference
 1. PhotoView: https://github.com/Baseflow/PhotoView
 2. DataStore: https://developer.android.com/topic/libraries/architecture/datastore?gclsrc=ds&gclsrc=ds
